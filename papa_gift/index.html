@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personal Command Center</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personal Command Center</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</head>
+
+</head>
+
+<body>
+
+    <canvas id="particle-canvas"></canvas>
+
+
+
+    <div id="start-screen" class="visible">
+
+        <h1 class="glitch" data-text="DIWAN-OS">DIWAN-OS</h1>
+
+        <p>System awaits activation.</p>
+
+        <button id="start-button">[[ ACTIVATE ]]</button>
+
+    </div>
+
+    
+
+    <div id="terminal-container" class="hidden">
+
+        <div id="terminal"></div>
+
+    </div>
+
+    
+
+    <div id="verification-screen" class="hidden">
+
+        <h2 class="glitch" data-text="> PERSONALIZATION REQUIRED">> PERSONALIZATION REQUIRED</h2>
+
+        <p>Enter your name to initialize your Command Center.</p>
+
+        <input type="text" id="access-key-input" placeholder="ENTER YOUR NAME" autocomplete="off">
+
+        <button id="verify-button">INITIALIZE</button>
+
+        <p id="error-message"></p>
+
+    </div>
+
+    
+
+    <main id="dashboard" class="hidden">
+
+        <header class="dashboard-header">
+
+            <h1 class="glitch" id="dashboard-title" data-text="COMMAND CENTER">COMMAND CENTER</h1>
+
+            <div class="header-info">
+
+                <div id="user-controls">
+
+                    <span id="welcome-user"></span>
+
+                    <button id="reset-user-btn">Change User</button>
+
+                </div>
+
+                <div id="date"></div>
+
+                <div id="clock">--:--:--</div>
+
+            </div>
+
+        </header>
+
+
+
+        <nav class="main-nav">
+
+            <button class="nav-btn active" data-target="page-dashboard">Dashboard</button>
+
+            <button class="nav-btn" data-target="page-assistant">Eesu the Bot</button>
+
+        </nav>
+
+
+
+        <div class="page-container">
+
+            
+
+            <section id="page-dashboard" class="page-section active">
+
+                <div class="widget-grid">
+                    <!-- Stopwatch Widget -->
+                    <section class="widget" id="stopwatch-widget">
+                        <div class="widget-header">-- STOPWATCH --</div>
+                        <div class="widget-content" id="stopwatch-content">
+                            <div class="display">00:00:00</div>
+                            <button id="start-stopwatch">Start</button>
+                            <button id="pause-stopwatch">Pause</button>
+                            <button id="reset-stopwatch">Reset</button>
+                            <button id="lap-stopwatch">Lap</button>
+                            <div id="stopwatch-laps" class="laps" aria-live="polite"></div>
+                        </div>
+                    </section>
+
+                    <!-- Timer Widget -->
+                    <section class="widget" id="timer-widget">
+                        <div class="widget-header">-- TIMER --</div>
+                        <div class="widget-content" id="timer-content">
+                            <input type="text" id="timer-minutes" placeholder="MM or MM:SS or HH:MM:SS" inputmode="numeric" autocomplete="off">
+                            <div class="display">00:00:00</div>
+                            <button id="start-timer">Start</button>
+                            <button id="pause-timer">Pause</button>
+                            <button id="reset-timer">Reset</button>
+                        </div>
+                    </section>
+
+                    <!-- World Clock Widget -->
+                    <section class="widget" id="world-clock-widget">
+                        <div class="widget-header">-- WORLD CLOCK --</div>
+                        <div class="widget-content" id="world-clock-content">
+                            <div>New York: <span id="ny-time"></span></div>
+                            <div>London: <span id="ldn-time"></span></div>
+                            <div>Tokyo: <span id="tokyo-time"></span></div>
+                            <div class="extra-tz-row">
+                                <label for="extra-tz-select">Extra timezone:</label>
+                                <select id="extra-tz-select">
+                                    <option value="">-- select timezone --</option>
+                                    <option value="Europe/Paris">Europe/Paris</option>
+                                    <option value="Asia/Kolkata">Asia/Kolkata</option>
+                                    <option value="America/Los_Angeles">America/Los_Angeles</option>
+                                    <option value="America/Chicago">America/Chicago</option>
+                                    <option value="Australia/Sydney">Australia/Sydney</option>
+                                </select>
+                                <div id="extra-tz-time" style="margin-top:6px; font-weight:600;"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="widget" id="briefing-widget" style="grid-column: span 2;">
+
+                        <div class="widget-header">-- TODAY'S BRIEFING --</div>
+
+                        <div class="widget-content" id="briefing-content"></div>
+
+                    </section>
+
+                    <section class="widget" id="device-status-widget">
+
+                        <div class="widget-header">-- SYSTEM VITALS --</div>
+
+                        <div class="widget-content" id="device-status-content"></div>
+
+                    </section>
+
+                    <section class="widget" id="location-widget">
+
+                        <div class="widget-header">-- LIVE POSITION & DISTANCE --</div>
+
+                        <div class="widget-content" id="location-content"></div>
+
+                    </section>
+
+                    <section class="widget" id="weather-widget">
+
+                        <div class="widget-header">-- LIVE ATMOSPHERIC DATA --</div>
+
+                        <div class="widget-content" id="weather-content">
+
+                            <div class="status-text"></div>
+
+                            <div class="data-text hidden"></div>
+
+                        </div>
+
+                    </section>
+
+                    <section class="widget" id="quotes-widget">
+
+                        <div class="widget-header">-- DAILY DIRECTIVE --</div>
+
+                        <div class="widget-content" id="quotes-content"></div>
+
+                    </section>
+
+                    <section class="widget" id="notes-widget" style="grid-column: span 2;">
+
+                        <div class="widget-header">-- DIGITAL NOTEPAD --</div>
+
+                        <div class="widget-content">
+
+                            <textarea id="notepad" placeholder="Type quick notes here... they will be saved automatically."></textarea>
+
+                        </div>
+
+                    </section>
+
+                    <section class="widget" id="news-widget" style="grid-column: span 3;">
+
+                        <div class="widget-header">-- TOP INTEL (INDIA) --</div>
+
+                        <div class="widget-content" id="news-content">
+
+                            <div class="status-text"></div>
+
+                            <div class="data-text hidden"></div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </section>
+
+
+
+            <section id="page-assistant" class="page-section">
+
+                <div class="assistant-container">
+
+                    <div class="widget-header">-- EESU THE BOT --</div>
+
+                    <div id="chat-history">
+
+                        <div class="bot-message">Hello! I am Eesu, your personal AI assistant. How can I help you today?</div>
+
+                    </div>
+
+                    <div id="chat-input-area">
+
+                        <input type="text" id="chat-input" placeholder="Ask anything..." autocomplete="off">
+
+                        <button id="chat-send-btn">SEND</button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+        </div>
+
+    </main>
+
+    <audio id="background-music" src="background.mp3" loop></audio>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

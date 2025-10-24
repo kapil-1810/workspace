@@ -1,0 +1,41 @@
+{
+  "totalArticles": 3,
+  "articles": [
+    {
+      "title": "Fallback: Welcome to your news widget!",
+      "description": "This is fallback content. If you see this, the live news function may be configuring.",
+      "content": "This is fallback content. If you see this, the live news function may be configuring.",
+      "url": "#",
+      "image": "",
+      "publishedAt": "2024-01-01T12:00:00Z",
+      "source": {
+        "name": "Local Fallback",
+        "url": "#"
+      }
+    },
+    {
+      "title": "Please check your Netlify environment variables.",
+      "description": "Make sure GNEWS_API_KEY is set in your Netlify build settings.",
+      "content": "Make sure GNEWS_API_KEY is set in your Netlify build settings.",
+      "url": "#",
+      "image": "",
+      "publishedAt": "2024-01-01T12:00:00Z",
+      "source": {
+        "name": "Local Fallback",
+        "url": "#"
+      }
+    },
+    {
+      "title": "After setting the API key, redeploy your site.",
+      "description": "A new deploy is needed to load the key.",
+      "content": "A new deploy is needed to load the key.",
+      "url": "#",
+      "image": "",
+      "publishedAt": "2024-01-01T12:00:00Z",
+      "source": {
+        "name": "Local Fallback",
+        "url": "#"
+      }
+    }
+  ]
+}
